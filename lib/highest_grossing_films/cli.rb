@@ -1,4 +1,4 @@
-class HighestGrossingFilms::CLI 
+class CLI 
   
   def call 
     list_movies

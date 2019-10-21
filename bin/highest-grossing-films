@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative './lib/highest_grossing_films'
+require './lib/highest_grossing_films'
 
-HighestGrossingFilms::CLI.new.call
+CLI.new.call
 
