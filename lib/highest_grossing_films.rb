@@ -4,7 +4,7 @@ require_relative '../lib/highest_grossing_films/films'
 require_relative '../lib/highest_grossing_films/api'
 require_relative '../lib/highest_grossing_films/version'
 
-# require 'pry'
+require 'pry'
 require 'nokogiri'
 require 'open-uri'
 require 'httparty'

@@ -4,6 +4,7 @@ class CLI
     list_movies
     menu
     farewell
+    API.new.fetch
   end
   
   def list_movies
