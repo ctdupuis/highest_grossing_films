@@ -1,4 +1,0 @@
-# class HighestGrossingFilms::Scraper
-  
-  
-# end
