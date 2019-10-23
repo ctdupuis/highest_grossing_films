@@ -1,4 +1,4 @@
-# HighestGrossingFilms
+# Films
 
 This gem provides a list of the top selling films by year of user's choice according to themoviedb.com.
 
@@ -11,7 +11,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'highest_grossing_films'
+gem 'films'
 ```
 
 And then execute:
@@ -20,7 +20,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install highest_grossing_films
+    $ gem install films
 
 ## Usage
 
