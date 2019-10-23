@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require './lib/highest_grossing_films'
-
-CLI.new.call
-

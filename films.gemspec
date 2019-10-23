@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "highest_grossing_films/version"
+require "films/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "highest_grossing_films"
-  spec.version       = HighestGrossingFilms::VERSION
+  spec.version       = Films::VERSION
   spec.authors       = ["'Cody Dupuis'"]
   spec.email         = ["'ctdupuis7@gmail.com'"]
 

@@ -1,10 +1,15 @@
 class CLI 
   
+  attr_accessor :api 
+  
   def call 
     list_movies
     menu
     farewell
-    API.new.fetch
+    @api = API.new(2018)
+    @api.fetch
+    movie = Movies.all.first
+    @api.fetch_details(movie)
   end
   
   def list_movies

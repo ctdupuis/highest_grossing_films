@@ -1,6 +1,6 @@
 # HighestGrossingFilms
 
-This gem provides a list of the top 20 Highest Grossing Films as of September 12, 2019 as stated in an article of Paste Magazine written by Josh Jackson and the Paste Movies Staff.
+This gem provides a list of the top selling films by year of user's choice according to themoviedb.com.
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/highest_grossing_films`. To experiment with that code, run `bin/console` for an interactive prompt.
 
