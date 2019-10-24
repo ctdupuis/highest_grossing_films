@@ -16,7 +16,7 @@ class CLI
       puts "Enter a year as an integer to see the best-selling films of that year."
       puts "Enter 'all' to see the best-selling films of all time."
       puts "Enter 'exit' to end the program."
-      input = gets.strip
+      input = gets.strip.downcase
       @api = API.new(input)
       @api.fetch
       list_movies
@@ -40,22 +40,32 @@ class CLI
       input = gets.strip.downcase
       if input == 'list'
         list_movies
-      if input.between?(1..20)
-        movie = Movies.all[input-1]
-        @api.fetch_details(movie)
-        display_movie(movie)
+      elsif input.to_i.between?(1, 20)
+        film = Movies.all[input.to_i-1]
+        @api.fetch_details(film)
+        display_movie(film)
       end
     end
   end
   
   def display_movie(movie)
+    sleep(0.2)
     puts "Movie Title: #{movie.name}"
+    puts "--------------------------"
+    sleep(0.4)
     puts "Synopsis: #{movie.overview}"
+    puts "--------------------------"
+    sleep(0.2)
     puts "Revenue: $#{movie.revenue}"
+    puts "--------------------------"
+    sleep(0.2)
     puts "Budget: $#{movie.budget}"
+    puts "--------------------------"
+    puts ""
   end
   
   def farewell
     puts "See you next time!"
   end
+  
 end
