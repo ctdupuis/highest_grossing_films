@@ -20,29 +20,39 @@ class CLI
       @api = API.new(input)
       @api.fetch
       list_movies
+      menu
     end
   end
   
   def list_movies
-    Movies.all.each.with_index{|m ,i| puts "#{i+1}. #{m.name}"}  
+    Movies.all.each.with_index do |m ,i|
+      sleep(0.2)
+      puts "#{i+1}. #{m.name}" 
+    end
   end
   
   def menu
     input = ""
     while input != "exit"
-    puts "Enter a movie's corresponding number for more details."
-    puts "Enter 'list' to see the list again."
-    puts "Enter 'exit' to quit the program."
-    input = gets.strip.downcase
-      case input
-        when "20"
-          puts "Minions:"
-        when "19"
-          puts "Iron Man 3:"
-        when "list"
-          list_movies
+      puts "Enter a movie's corresponding number for more details."
+      puts "Enter 'list' to see the list again."
+      puts "Enter 'exit' to quit the program."
+      input = gets.strip.downcase
+      if input == 'list'
+        list_movies
+      if input.between?(1..20)
+        movie = Movies.all[input-1]
+        @api.fetch_details(movie)
+        display_movie(movie)
       end
     end
+  end
+  
+  def display_movie(movie)
+    puts "Movie Title: #{movie.name}"
+    puts "Synopsis: #{movie.overview}"
+    puts "Revenue: $#{movie.revenue}"
+    puts "Budget: $#{movie.budget}"
   end
   
   def farewell
