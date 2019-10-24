@@ -49,17 +49,20 @@ class CLI
   end
   
   def display_movie(movie)
-    sleep(0.2)
+    sleep(0.5)
     puts "Movie Title: #{movie.name}"
     puts "--------------------------"
-    sleep(0.4)
+    sleep(0.5)
     puts "Synopsis: #{movie.overview}"
     puts "--------------------------"
-    sleep(0.2)
+    sleep(1)
     puts "Revenue: $#{movie.revenue}"
     puts "--------------------------"
-    sleep(0.2)
+    sleep(0.5)
     puts "Budget: $#{movie.budget}"
+    puts "--------------------------"
+    sleep(0.5)
+    puts "Runtime: #{movie.runtime} minutes"
     puts "--------------------------"
     puts ""
   end
