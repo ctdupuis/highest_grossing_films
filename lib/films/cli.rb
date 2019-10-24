@@ -3,19 +3,28 @@ class CLI
   attr_accessor :api 
   
   def call 
-    list_movies
-    menu
-    farewell
-    @api = API.new(2018)
-    @api.fetch
-    movie = Movies.all.first
-    @api.fetch_details(movie)
+    start
+    # @api = API.new(2018)
+    # @api.fetch
+    # movie = Movies.all.first
+    # @api.fetch_details(movie)
+  end
+  
+  def start
+    input = ""
+    unless input == 'exit' || input == Integer
+      puts "Enter a year as an integer to see the best-selling films of that year."
+      puts "Enter 'all' to see the best-selling films of all time."
+      puts "Enter 'exit' to end the program."
+      input = gets.strip
+      @api = API.new(input)
+      @api.fetch
+      list_movies
+    end
   end
   
   def list_movies
-    puts "Here are the 20 highest grossing movies of all time:"
-    puts "20. Minions"
-    puts "19. Iron Man 3"
+    Movies.all.each.with_index{|m ,i| puts "#{i+1}. #{m.name}"}  
   end
   
   def menu
