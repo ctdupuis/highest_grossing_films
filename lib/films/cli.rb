@@ -19,13 +19,14 @@ class CLI
       input = gets.strip.downcase
       @api = API.new(input)
       @api.fetch
-      list_movies
+      list_movies(input)
       menu
     end
   end
   
-  def list_movies
-    Movies.all.each.with_index do |m ,i|
+  def list_movies(year)
+    films = Movies.all.select{|movie| movie.year == year}
+      films.each.with_index do |m ,i|
       sleep(0.2)
       puts "#{i+1}. #{m.name}" 
     end
@@ -36,35 +37,43 @@ class CLI
     while input != "exit"
       puts "Enter a movie's corresponding number for more details."
       puts "Enter 'list' to see the list again."
+      puts "Enter 'year' to choose a different year."
       puts "Enter 'exit' to quit the program."
       input = gets.strip.downcase
       if input == 'list'
-        list_movies
+        list_movies(year)
       elsif input.to_i.between?(1, 20)
         film = Movies.all[input.to_i-1]
         @api.fetch_details(film)
         display_movie(film)
+      elsif input == 'year'
+        start
       end
     end
   end
   
   def display_movie(movie)
-    sleep(0.5)
+    sleep(1)
     puts "Movie Title: #{movie.name}"
     puts "--------------------------"
-    sleep(0.5)
+    sleep(1)
     puts "Synopsis: #{movie.overview}"
     puts "--------------------------"
     sleep(1)
-    puts "Revenue: $#{movie.revenue}"
+    puts "Revenue: $#{movie.revenue}" if movie.revenue != 0
     puts "--------------------------"
-    sleep(0.5)
-    puts "Budget: $#{movie.budget}"
+    sleep(1)
+    puts "Budget: $#{movie.budget}" if movie.budget != 0
     puts "--------------------------"
-    sleep(0.5)
+    sleep(1)
     puts "Runtime: #{movie.runtime} minutes"
     puts "--------------------------"
     puts ""
+    sleep(0.5)
+  end
+  
+  def unavailable
+    puts "Sorry, this movie doesn't have this information."
   end
   
   def farewell

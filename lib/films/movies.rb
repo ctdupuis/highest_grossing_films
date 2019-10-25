@@ -1,11 +1,12 @@
 class Movies
-  attr_accessor :name, :id, :overview, :runtime, :revenue, :budget
+  attr_accessor :name, :id, :year, :overview, :runtime, :revenue, :budget
   
   @@all = []
   
-  def initialize(name, id)
+  def initialize(name, id, year)
     @name = name 
     @id = id 
+    @year = year
     @@all << self
   end
   
