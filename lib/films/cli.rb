@@ -9,9 +9,7 @@ class CLI
   def start
     input = ""
     unless input == 'exit' || input == Integer
-      puts "Enter a year as an integer to see the best-selling films of that year."
-      puts "Enter 'all' to see the best-selling films of all time."
-      puts "Enter 'exit' to end the program."
+      list_options
       input = gets.strip.downcase
       @api = API.new(input)
       if input == 'exit'
@@ -31,8 +29,19 @@ class CLI
     end
   end
   
+  def list_options
+    puts "Enter a year as an integer to see the best-selling films of that year."
+    puts "Enter 'all' to see the best-selling films of all time."
+    puts "Enter 'exit' to end the program."
+  end
+  
+  def list_movie_options
+    puts "Enter a movie's corresponding number for more details."
+    puts "Enter 'year' to choose a different year."
+    puts "Enter 'exit' to quit the program."
+  end
+  
   def list_movies(year)
-     binding.pry
     films = Movies.all.select{|movie| movie.year == year}
       films.each.with_index do |m ,i|
       sleep(0.2)
@@ -43,20 +52,17 @@ class CLI
   def menu
     input = ""
     sleep(1)
-      puts "Enter a movie's corresponding number for more details."
-      puts "Enter 'list' to see the list again."
-      puts "Enter 'year' to choose a different year."
-      puts "Enter 'exit' to quit the program."
+      list_movie_options
       input = gets.strip.downcase
       if input == 'exit'
         farewell
-      elsif input == 'list'
-        list_movies(year)
       elsif input.to_i.between?(1, 20)
         film = Movies.all[input.to_i-1]
         @api.fetch_details(film)
         display_movie(film)
+        menu
       elsif input == 'year'
+        Movies.all.clear
         start
       else
         puts "**Please enter an input based on menu options**"
@@ -71,10 +77,10 @@ class CLI
     puts "Synopsis: #{movie.overview}"
     puts "--------------------------"
     sleep(1)
-    puts "Revenue: $#{movie.revenue}" 
+    puts "Revenue: $#{movie.revenue}" if !validate(movie.revenue.to_i, "Revenue")
     puts "--------------------------"
     sleep(1)
-    puts "Budget: $#{movie.budget}" 
+    puts "Budget: $#{movie.budget}" if !validate(movie.budget.to_i, "Budget")
     puts "--------------------------"
     sleep(1)
     puts "Runtime: #{movie.runtime} minutes"
@@ -83,13 +89,13 @@ class CLI
     sleep(1)
   end
   
-  # def validate(attribute)
-  #   if attribute == 0 
-  #     unavailable
-  #   end
-  # end
+  def validate(attribute, string)
+    if attribute == 0 
+      unavailable(string)
+    end
+  end
   
-  def unavailable
+  def unavailable(string)
     puts "No information available"
   end
   
