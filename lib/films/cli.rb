@@ -4,10 +4,7 @@ class CLI
   
   def call 
     start
-    # @api = API.new(2018)
-    # @api.fetch
-    # movie = Movies.all.first
-    # @api.fetch_details(movie)
+    farewell
   end
   
   def start
@@ -72,7 +69,7 @@ class CLI
     sleep(0.5)
   end
   
-  def unavailable
+  def unavailable #validate?
     puts "Sorry, this movie doesn't have this information."
   end
   

@@ -1,10 +1,7 @@
 # Films
 
-This gem provides a list of the top selling films by year of user's choice according to themoviedb.com.
+This gem provides a list of the top selling films by year of user's choice according to themoviedb.com. Some of the older movies on the website (anything before 1975) may not have some of the information available or some information may display as 0.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/highest_grossing_films`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
