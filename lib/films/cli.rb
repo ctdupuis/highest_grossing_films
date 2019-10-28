@@ -44,7 +44,7 @@ class CLI
   def list_movies(year)
     films = Movies.all.select{|movie| movie.year == year}
       films.each.with_index do |m ,i|
-      # sleep(0.3)
+      sleep(0.3)
       puts "#{i+1}. #{m.name}" 
     end
   end
@@ -90,6 +90,7 @@ class CLI
     puts ""
     sleep(1)
   end
+  
   
   def time_conversion(minutes)
     hours = minutes / 60
