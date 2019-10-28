@@ -44,7 +44,7 @@ class CLI
   def list_movies(year)
     films = Movies.all.select{|movie| movie.year == year}
       films.each.with_index do |m ,i|
-      sleep(0.4)
+      # sleep(0.3)
       puts "#{i+1}. #{m.name}" 
     end
   end
@@ -85,12 +85,18 @@ class CLI
     puts "Budget: $#{movie.budget}" if !validate(movie.budget.to_i, "Budget")
     puts "--------------------------"
     sleep(1)
-    puts "Runtime: #{movie.runtime} minutes"
+    puts "Runtime:" + "#{time_conversion(movie.runtime.to_i)}"
     puts "============================="
     puts ""
     sleep(1)
   end
   
+  def time_conversion(minutes)
+    hours = minutes / 60
+    rest = minutes % 60
+    " #{hours}h #{rest}mins" 
+  end
+
   def validate(attribute, string)
     unavailable(string) if attribute == 0
   end
