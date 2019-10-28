@@ -13,12 +13,12 @@ class CLI
       input = gets.strip.downcase
       @api = API.new(input)
       if input == 'exit'
-        farewell
+        exit_message
       elsif input == 'all'
         @api.fetch
         list_movies(input)
         menu
-      elsif input.to_i.is_a?(Integer) && input.to_i >= 1850
+      elsif input.to_i.is_a?(Integer) && input.to_i.between?(1890, 2019)
         @api.fetch
         list_movies(input)
         menu
@@ -44,7 +44,7 @@ class CLI
   def list_movies(year)
     films = Movies.all.select{|movie| movie.year == year}
       films.each.with_index do |m ,i|
-      sleep(0.2)
+      sleep(0.4)
       puts "#{i+1}. #{m.name}" 
     end
   end
@@ -55,7 +55,7 @@ class CLI
       list_movie_options
       input = gets.strip.downcase
       if input == 'exit'
-        farewell
+        exit_message
       elsif input.to_i.between?(1, 20)
         film = Movies.all[input.to_i-1]
         @api.fetch_details(film)
@@ -66,17 +66,19 @@ class CLI
         start
       else
         puts "**Please enter an input based on menu options**"
+        menu
       end
   end
   
   def display_movie(movie)
     sleep(1)
+    puts "============================="
     puts "Movie Title: #{movie.name}"
     puts "--------------------------"
     sleep(1)
     puts "Synopsis: #{movie.overview}"
     puts "--------------------------"
-    sleep(1)
+    sleep(2)
     puts "Revenue: $#{movie.revenue}" if !validate(movie.revenue.to_i, "Revenue")
     puts "--------------------------"
     sleep(1)
@@ -84,22 +86,20 @@ class CLI
     puts "--------------------------"
     sleep(1)
     puts "Runtime: #{movie.runtime} minutes"
-    puts "--------------------------"
+    puts "============================="
     puts ""
     sleep(1)
   end
   
   def validate(attribute, string)
-    if attribute == 0 
-      unavailable(string)
-    end
+    unavailable(string) if attribute == 0
   end
   
   def unavailable(string)
     puts "No information available"
   end
   
-  def farewell
+  def exit_message
     puts "See you next time!"
   end
   
