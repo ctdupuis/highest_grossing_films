@@ -1,0 +1,3 @@
+To run this app, you must first require an API key from https://www.themoviedb.org
+
+Run $ export = KEY=<your API key>

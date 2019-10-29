@@ -4,7 +4,7 @@ class API
   
   def initialize(year)
     @year = year
-    @key = "f505bdb20065676b1b3df3d3f10be23a"
+    @key = ENV["KEY"]
   end
   
   def fetch

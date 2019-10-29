@@ -21,7 +21,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run this app, you must first require an API key from https://www.themoviedb.org and enter the following commands into your terminal:
+
+  $ export KEY=<your API key>
+  $ cd highest_grossing_films
+  $ bin/films
 
 ## Development
 
