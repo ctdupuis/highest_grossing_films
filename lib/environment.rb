@@ -4,7 +4,6 @@ require_relative 'films/api'
 require_relative 'films/version'
 
 require 'pry'
-require 'nokogiri'
 require 'open-uri'
 require 'httparty'
 

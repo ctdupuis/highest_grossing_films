@@ -23,7 +23,7 @@ class CLI
         list_movies(input)
         menu
       else
-        puts "**Please enter an input based on menu options**"
+        puts "==Please enter an input based on menu options=="
         start
       end
     end
@@ -79,10 +79,10 @@ class CLI
     puts "Synopsis: #{movie.overview}"
     puts "--------------------------"
     sleep(2)
-    puts "Revenue: $#{movie.revenue}" if !validate(movie.revenue.to_i, "Revenue")
+    puts "Revenue: " + "$#{number_format(movie.revenue)}" if !validate(movie.revenue.to_i, "Revenue")
     puts "--------------------------"
     sleep(1)
-    puts "Budget: $#{movie.budget}" if !validate(movie.budget.to_i, "Budget")
+    puts "Budget: " + "$#{number_format(movie.budget)}" if !validate(movie.budget.to_i, "Budget")
     puts "--------------------------"
     sleep(1)
     puts "Runtime:" + "#{time_conversion(movie.runtime.to_i)}"
@@ -91,6 +91,9 @@ class CLI
     sleep(1)
   end
   
+  def number_format(number)
+    number.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+  end
   
   def time_conversion(minutes)
     hours = minutes / 60
@@ -107,7 +110,7 @@ class CLI
   end
   
   def exit_message
-    puts "See you next time!"
+    puts "Happy movie-going! See you next time!"
   end
   
 end

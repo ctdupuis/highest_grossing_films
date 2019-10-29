@@ -1,6 +1,6 @@
 # Films
 
-This gem provides a list of the top selling films by year of user's choice according to themoviedb.com. Some of the older movies on the website (anything before 1975) may not have some of the information available or some information may display as 0. Information can be found between 1890-2019.
+This gem provides a list of the top selling films by year of user's choice or the top selling films of all time according to the Movie Database website (https://www.themoviedb.org). Some of the older movies on the website (anything before 1975) may not have some of the information available or some information may display as 0. Information can be found between the years 1890-2019.
 
 
 ## Installation
