@@ -3,10 +3,9 @@ class Movies
   
   @@all = []
   
-  def initialize(name, id, year)
+  def initialize(name, id)
     @name = name 
     @id = id 
-    @year = year
     @@all << self
   end
   

@@ -8,22 +8,18 @@ class CLI
   
   def start
     input = ""
-    unless input == 'exit' || input == Integer
+    unless input == 'exit'
       list_options
       input = gets.strip.downcase
       @api = API.new(input)
       if input == 'exit'
         exit_message
-      elsif input == 'all'
-        @api.fetch
-        list_movies(input)
-        menu
-      elsif input.to_i.is_a?(Integer) && input.to_i.between?(1890, 2019)
+      elsif input == 'all' || input.to_i.between?(1890, 2019)
         @api.fetch
         list_movies(input)
         menu
       else
-        puts "==Please enter an input based on menu options=="
+        wrong_input
         start
       end
     end
@@ -42,8 +38,7 @@ class CLI
   end
   
   def list_movies(year)
-    films = Movies.all.select{|movie| movie.year == year}
-      films.each.with_index do |m ,i|
+    Movies.all.each.with_index do |m, i|
       sleep(0.3)
       puts "#{i+1}. #{m.name}" 
     end
@@ -65,9 +60,15 @@ class CLI
         Movies.all.clear
         start
       else
-        puts "**Please enter an input based on menu options**"
+        wrong_input
         menu
       end
+  end
+  
+  def wrong_input
+    puts "==Please enter an input based on menu options=="
+    puts ""
+    sleep(1)
   end
   
   def display_movie(movie)

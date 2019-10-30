@@ -14,7 +14,7 @@ class API
     response["results"].each do |movie|
       id = movie["id"]
       name = movie["title"]
-      Movies.new(name, id, @year)
+      Movies.new(name, id)
     end
   end
   
